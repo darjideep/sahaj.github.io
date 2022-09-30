@@ -1,0 +1,63 @@
+<%-- 
+    Document   : jspRegistration
+    Created on : 2 May, 2022, 2:41:55 PM
+    Author     : Deep
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="MainCon.jsp" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="assets/login.css">
+    </head>
+
+    <body>
+        <form method="GET" action="jspRegistration.jsp" >
+            <h3>New Registration</h3>
+
+            <input type="text" name="txtid"  placeholder="Tourist_id *Only Number"  autocomplete="off" required 
+                   oninput="this.value=this.value.replace(/[^0-9.]/g,'').replace(/(\..*)\./g,'$1');"/> <br/>
+
+            <input type="text" name="txtname" placeholder="Tourist_Name" autocomplete="off" required><br/>
+
+            <input type="email" name="txtemail" placeholder="Email_Id" autocomplete="off" required><br/>
+
+            <input type="password" name="txtpass" placeholder="Password" autocomplete="off" d>
+
+            <input type="submit" class="btn" value="REGISTER" name="btnLogin">
+            <h4>Go to Login &nbsp; <a href="jspLogin.jsp" > Click_here</a></h4>
+        </form>
+        <%           
+            ResultSet rs = null;
+            PreparedStatement ps = null;
+            String id = request.getParameter("txtid");
+            String name = request.getParameter("txtname");
+            String email = request.getParameter("txtemail");
+            String pass = request.getParameter("txtpass");
+            int updateQuery = 0;
+
+            try {
+                String sql = "insert into visiter(vid,vname,vemail,vpass) values ( ?,?,?,? )";
+
+                ps = con.prepareStatement(sql);
+
+                ps.setString(1, id);
+                ps.setString(2, name);
+                ps.setString(3, email);
+                ps.setString(4, pass);
+
+                updateQuery = ps.executeUpdate();
+                if (updateQuery != 0) {%>
+
+        <script>alert("Registration Successfully...")</script>
+        <% }
+            } catch (Exception e1) {
+                System.out.print(e1);
+                e1.printStackTrace();
+            }
+
+        %>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<%-- 
+    Document   : jspLogin
+    Created on : 3 Apr, 2022, 11:07:20 AM
+    Author     : Deep
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="MainCon.jsp" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login Page</title>
+        <link rel="stylesheet" href="css/login.css">
+
+    </head>
+    <body>
+
+        <form method="GET" action="jspLogin.jsp" >
+            <h3>Login Here</h3><br/>
+          
+            <input type="email" name="txtemail"  placeholder="Email_Id" autocomplete="off" required><br/>
+
+            <input type="password" name="txtpass" placeholder="Password" required><br/>
+
+
+            <input type="submit" class="btn" value="Login"><br/>
+            <h4>New Registration &nbsp; <a href="jspRegistration.jsp" > Click_here</a></h4>
+        </form>
+
+        <!-- <%!
+            Statement smt;
+            ResultSet rs = null;
+        %>
+        <%
+//        if (request.getParameter("submit").equals("Login")) {
+            String email = request.getParameter("txtemail");
+            String pass = request.getParameter("txtpass");
+            if (email != null && pass != null) {
+                try {
+
+                        String sql = "Select * from visiter where vemail=? and vpass=?";
+
+                        PreparedStatement pst = con.prepareStatement(sql);
+                        pst.setString(1, email);
+                        pst.setString(2, pass);
+                        rs = pst.executeQuery();
+                        
+                        
+
+                        if (rs.next()) {
+                       
+                        session.setAttribute("user",email);
+                         response.sendRedirect("side.jsp");
+                         
+                        } else {
+                            out.println("<script>alert('Invalid login credentials')</script>");
+                        }
+
+                    } catch (Exception e) {
+                        out.println("Something went wrong !! Please try again");
+
+                    }
+                }
+        %> -->
+
+    </body>
+</html>
